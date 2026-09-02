@@ -1,0 +1,7 @@
+# requirements for the project
+streamlit
+pandas
+openpyxl
+groq
+python-dotenv
+plotly

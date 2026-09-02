@@ -1,0 +1,19 @@
+Project 4: AI Personal Finance Advisor (Focus on SMEs)
+The Problem
+Small and medium enterprises play a critical role in developing economies but often lack professional financial planning support. They face complex tax, cash flow, and financing decisions but cannot afford full-time financial advisors.
+
+The Constraints
+You cannot access real SME financial data due to privacy and compliance issues. Financial profiles vary wildly across industries and sizes. You have a limited showcase timeline.
+
+What You Decided
+You build an LLM-driven financial advisory system. Users upload anonymized financial data (or use simulated data). The system automatically handles expense categorization and visualization, cash flow forecasting, risk alerts, and funding recommendations. You use RAG (Retrieval-Augmented Generation) to ground the LLM's advice in the latest tax policies and industry reports.
+
+Results
+A usable web app that processes CSV/Excel imports and generates comprehensive financial health reports with actionable recommendations. You can quantify the time reduction (from manual hours to automatic seconds) and the breadth of covered topics.
+
+What You Would Change
+Financial advice carries legal liability. Early on, you should have added clear disclaimers like "for informational purposes only, not professional financial advice," and set stricter boundaries on what the AI can and cannot say.
+
+Recommended Tools
+OpenAI API / Claude API, RAG frameworks (like RAGFlow or LlamaIndex), FastAPI, open-source reference implementations like FinSight.
+

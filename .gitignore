@@ -1,0 +1,27 @@
+# Virtual Environment
+venv/
+env/
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
+
+# Data files (keep dummy data, but ignore real user uploads)
+data/uploads/
+*.db
+chroma_db/
+
+# Streamlit
+.streamlit/
+
+# OS
+.DS_Store
+Thumbs.db
