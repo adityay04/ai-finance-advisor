@@ -5,3 +5,6 @@ openpyxl
 groq
 python-dotenv
 plotly
+chromadb
+sentence-transformers
+pypdf

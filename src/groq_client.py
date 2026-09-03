@@ -10,20 +10,40 @@ load_dotenv()
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-def get_ai_insights(aggregated_data: dict, user_question: str):
+def get_ai_insights(aggregated_data: dict, user_question: str, rag_context: str = None):
     """
-    Sends the data to Groq's compound model (which can reason and use tools).
-    Returns structured JSON advice.
+    Sends the data + RAG context to Groq Compound.
+    If rag_context is provided, the AI grounds its advice in it.
     """
-    system_prompt = """
-    You are a brutally honest financial advisor for small business owners.
-    Look at the provided numbers and answer the user's question.
-    Give specific, actionable feedback. Reference exact dollar amounts and category names.
-    Keep it to 3 short bullet points or a short paragraph.
-    
-    IMPORTANT: Output ONLY a valid JSON object with a single key: "advice" (string).
-    Do not include any other text, explanations, or markdown.
-    """
+    if rag_context and len(rag_context) > 10:
+        system_prompt = f"""
+        You are a brutally honest financial advisor for small business owners.
+        
+        IMPORTANT: You must ground your advice in the following tax/financial rules 
+        retrieved from the user's uploaded knowledge base:
+        
+        === KNOWLEDGE BASE CONTEXT ===
+        {rag_context}
+        === END CONTEXT ===
+        
+        Look at the provided numbers and answer the user's question.
+        Reference the specific rules or sections from the knowledge base.
+        Give specific, actionable feedback with exact dollar amounts and category names.
+        Keep it to 3 short bullet points or a short paragraph.
+        
+        OUTPUT ONLY: A valid JSON object with a single key: "advice" (string).
+        No other text, no markdown.
+        """
+    else:
+        system_prompt = """
+        You are a brutally honest financial advisor for small business owners.
+        Look at the provided numbers and answer the user's question.
+        Give specific, actionable feedback. Reference exact dollar amounts and category names.
+        Keep it to 3 short bullet points or a short paragraph.
+        
+        OUTPUT ONLY: A valid JSON object with a single key: "advice" (string).
+        No other text, no markdown.
+        """
     
     user_prompt = f"""
     Here is my expense data:
