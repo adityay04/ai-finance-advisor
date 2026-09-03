@@ -1,27 +1,21 @@
 # Virtual Environment
 venv/
 env/
-.env
 
-# Python
+# API Keys & Secrets
+.env
+.streamlit/secrets.toml
+
+# Local Data & Databases (not needed in production)
+data/
+*.db
+chroma_db/
+
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
-.Python
 
 # IDE
 .vscode/
 .idea/
-
-# Data files (keep dummy data, but ignore real user uploads)
-data/uploads/
-*.db
-chroma_db/
-
-# Streamlit
-.streamlit/
-
-# OS
-.DS_Store
-Thumbs.db
