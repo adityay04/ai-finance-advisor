@@ -1,7 +1,7 @@
 # Virtual Environment
 venv/
 env/
-
+.env/
 # API Keys & Secrets
 .env
 .streamlit/secrets.toml
