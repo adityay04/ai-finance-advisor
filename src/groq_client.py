@@ -3,11 +3,30 @@
 import os
 import json
 import re
+import streamlit as st
 from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv()
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
+def get_groq_client():
+    """Get Groq client with API key from environment or Streamlit secrets."""
+    api_key = os.getenv("GROQ_API_KEY")
+    
+    if not api_key:
+        try:
+            api_key = st.secrets.GROQ_API_KEY
+        except Exception:
+            pass
+    
+    if not api_key:
+        raise ValueError(
+            "GROQ_API_KEY not found. Please set it in your .env file or Streamlit secrets."
+        )
+    
+    return Groq(api_key=api_key)
+
+client = get_groq_client()
 
 def get_ai_insights(aggregated_data: dict, user_question: str, rag_context: str = None):
     if rag_context and len(rag_context) > 8000:
